@@ -69,7 +69,7 @@ twitter_card <- ggplot(monthly, aes(x = Date, y = co2)) +
   
   geom_label(
     aes(
-      x = daily[1,]$Date - (365 * 2),
+      x = daily[1,]$Date - (365 * 2.1),
       y = daily[1,]$day - 17,
       label = paste0("Today:\n", daily[1,]$day, " ppm"),
       fontface = 3
@@ -93,13 +93,14 @@ twitter_card <- ggplot(monthly, aes(x = Date, y = co2)) +
     colour = "#0f9bff",
     size = 0.5,
     curvature = 0.2,
+    lineend = "round",
     arrow = arrow(length = unit(0.03, "npc"))
   ) +
   
   geom_label(
     aes(
-      x = daily[2,]$Date - (365 * 4),
-      y = daily[2,]$day + 1,
+      x = daily[2,]$Date - (365 * 3.9),
+      y = daily[2,]$day,
       label = paste0("One year ago:\n", daily[2,]$day, " ppm"),
       fontface = 3
     ),
@@ -115,13 +116,14 @@ twitter_card <- ggplot(monthly, aes(x = Date, y = co2)) +
   geom_curve(
     aes(
       x = daily[2,]$Date - (365 * 2),
-      y = daily[2,]$day + 2,
+      y = daily[2,]$day + 1.25,
       xend = daily[2,]$Date - 60,
-      yend = daily[2,]$day + 0.5
+      yend = daily[2,]$day + 0.4
     ),
     colour = "#0f9bff",
     size = 0.5,
     curvature = -0.2,
+    lineend = "round",
     arrow = arrow(length = unit(0.03, "npc"))
   ) +
   
@@ -132,7 +134,7 @@ twitter_card <- ggplot(monthly, aes(x = Date, y = co2)) +
 # export
 ggplot2::ggsave(
   twitter_card,
-  filename = paste0(getwd(), fig_dir, '/chart.png'),
+  filename = paste0(getwd(), fig_dir, '/chart2.png'),
   width = (w / s),
   height = (h / s),
   bg = "white",

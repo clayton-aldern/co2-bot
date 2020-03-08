@@ -1,4 +1,4 @@
-pacman::p_load('tidyverse', 'magick', 'ggimage')
+pacman::p_load('tidyverse')
 source(paste0(getwd(), "/src/R/config.R"))
 source(paste0(getwd(), "/src/R/gristify.R"))
 
@@ -41,19 +41,20 @@ twitter_card <- ggplot(monthly, aes(x = Date, y = co2)) +
     size = 2.5,
     shape = 1,
     stroke = 1,
-    color = "#C3C3C3"
+    color = "#cccccc",
+    alpha = 0.66
   ) +
   geom_line(aes(y = smoothed),
             size = 1.1,
-            color = "#FF7700",
+            color = "#ff9999",
             lineend = "round") +
   geom_point(
     data = daily,
     aes(x = Date, y = day),
-    size = 2.5,
-    shape = 1,
+    size = 3,
+    shape = 16,
     stroke = 1,
-    color = "#0f9bff"
+    color = "#ffcc99"
   ) +
   labs(title = t,
        subtitle = t_s,
@@ -72,7 +73,7 @@ twitter_card <- ggplot(monthly, aes(x = Date, y = co2)) +
     colour = "#666666",
     #fill = "white",
     label.size = NA,
-    family = "opensans",
+    family = font_text,
     size = 4
   ) +
   geom_curve(
@@ -82,7 +83,7 @@ twitter_card <- ggplot(monthly, aes(x = Date, y = co2)) +
       xend = daily[1,]$Date,
       yend = daily[1,]$day - 1
     ),
-    colour = "#0f9bff",
+    colour = "#ffcc99",
     size = 0.75,
     curvature = 0.2,
     lineend = "round",
@@ -102,7 +103,7 @@ twitter_card <- ggplot(monthly, aes(x = Date, y = co2)) +
     colour = "#666666",
     #fill = "white",
     label.size = NA,
-    family = "opensans",
+    family = font_text,
     size = 4
   ) +
   geom_curve(
@@ -112,7 +113,7 @@ twitter_card <- ggplot(monthly, aes(x = Date, y = co2)) +
       xend = daily[2,]$Date - 60,
       yend = daily[2,]$day + 0.4
     ),
-    colour = "#0f9bff",
+    colour = "#ffcc99",
     size = 0.75,
     curvature = -0.2,
     lineend = "round",

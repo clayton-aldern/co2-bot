@@ -11,15 +11,6 @@ daily <-
     "https://www.esrl.noaa.gov/gmd/webdata/ccgg/trends/co2_mlo_weekly.csv"
   ))
 
-# Check to see if we have the most recent data.
-# We want the bot to run every morning, so we should have data through yesterday.
-if (as.character(daily$Date[nrow(daily)]) != Sys.Date() - 1) {
-  stop(
-    "You don't have the most recent data.
-    Check the NOAA csv at https://www.esrl.noaa.gov/gmd/webdata/ccgg/trends/co2_mlo_weekly.csv"
-  )
-}
-
 monthly$smoothed <-
   predict(loess(trend ~ as.numeric(Date), monthly, span = .05))
 
@@ -35,12 +26,14 @@ daily$Date <- as.Date(daily$Date)
 w <- 700
 h <- 600
 s <- 100
-t <-
-  paste0("Carbon dioxide concentration: ", gsub(" 0", " ", format(Sys.Date(), format =
-                                                                    "%B %d, %Y")))
+t <- "Carbon dioxide today"
 t_s <-
   expression(paste("Atmospheric ", CO[2], ", parts per million"))
-c <- "Source: NOAA | Graphic + Bot: Clayton Aldern"
+c <-
+  paste0(
+    "Source: NOAA | Location: Mauna Loa | Graphic + Bot: Clayton Aldern (@compatibilism) | ",
+    gsub(" 0", " ", format(Sys.Date(), format = "%B %d, %Y"))
+  )
 
 # make the chart
 twitter_card <- ggplot(monthly, aes(x = Date, y = co2)) +
@@ -68,7 +61,7 @@ twitter_card <- ggplot(monthly, aes(x = Date, y = co2)) +
   
   geom_label(
     aes(
-      x = daily[1,]$Date - (365 * 2.1),
+      x = daily[1,]$Date - (365 * 1.8),
       y = daily[1,]$day - 17,
       label = paste0("Today:\n", daily[1,]$day, " ppm"),
       fontface = 3
@@ -84,13 +77,13 @@ twitter_card <- ggplot(monthly, aes(x = Date, y = co2)) +
   ) +
   geom_curve(
     aes(
-      x = daily[1,]$Date - 365,
-      y = daily[1,]$day - 15,
+      x = daily[1,]$Date - (365 * 0.70),
+      y = daily[1,]$day - 14.5,
       xend = daily[1,]$Date,
       yend = daily[1,]$day - 1
     ),
     colour = "#0f9bff",
-    size = 0.5,
+    size = 0.75,
     curvature = 0.2,
     lineend = "round",
     arrow = arrow(length = unit(0.03, "npc"))
@@ -120,18 +113,18 @@ twitter_card <- ggplot(monthly, aes(x = Date, y = co2)) +
       yend = daily[2,]$day + 0.4
     ),
     colour = "#0f9bff",
-    size = 0.5,
+    size = 0.75,
     curvature = -0.2,
     lineend = "round",
     arrow = arrow(length = unit(0.03, "npc"))
   ) +
   
+  scale_x_date(date_breaks = "years", date_labels = "%Y") +
+  
   gristify()
 
-# twitter_card
-
 # export
-fig_name <- paste0('/co2-',Sys.Date(),'.png')
+fig_name <- paste0('/co2-', Sys.Date(), '.png')
 fn <- paste0(getwd(), fig_dir, fig_name)
 ggplot2::ggsave(
   twitter_card,

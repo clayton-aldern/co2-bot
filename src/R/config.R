@@ -1,4 +1,5 @@
 # paths
 fig_dir = "/figures"
 
-# credentials
+# token
+token <- get_token()

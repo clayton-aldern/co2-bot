@@ -1,5 +1,9 @@
+pacman::p_load('showtext') # If you're on a newish Mac, you'll need XQuartz installed.
+font_add_google("Open Sans", "opensans")
+font <- "opensans"
+showtext_auto()
+
 gristify <- function() {
-  font <- "Open Sans"
   
   ggplot2::theme(
     
@@ -64,5 +68,6 @@ gristify <- function() {
     
     # Margins
     plot.margin = unit(c(.2, .2, .2, .2), "in")
+    
   )
 }

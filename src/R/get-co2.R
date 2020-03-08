@@ -35,13 +35,12 @@ daily$Date <- as.Date(daily$Date)
 w <- 700
 h <- 600
 s <- 100
-font <- "Open Sans"
 t <-
   paste0("Carbon dioxide concentration: ", gsub(" 0", " ", format(Sys.Date(), format =
                                                                     "%B %d, %Y")))
 t_s <-
   expression(paste("Atmospheric ", CO[2], ", parts per million"))
-c <- "Source: NOAA"
+c <- "Source: NOAA | Graphic + Bot: Clayton Aldern"
 
 # make the chart
 twitter_card <- ggplot(monthly, aes(x = Date, y = co2)) +
@@ -80,7 +79,7 @@ twitter_card <- ggplot(monthly, aes(x = Date, y = co2)) +
     colour = "#666666",
     #fill = "white",
     label.size = NA,
-    family = "Open Sans",
+    family = "opensans",
     size = 4
   ) +
   geom_curve(
@@ -110,7 +109,7 @@ twitter_card <- ggplot(monthly, aes(x = Date, y = co2)) +
     colour = "#666666",
     #fill = "white",
     label.size = NA,
-    family = "Open Sans",
+    family = "opensans",
     size = 4
   ) +
   geom_curve(
@@ -132,9 +131,11 @@ twitter_card <- ggplot(monthly, aes(x = Date, y = co2)) +
 # twitter_card
 
 # export
+fig_name <- paste0('/co2-',Sys.Date(),'.png')
+fn <- paste0(getwd(), fig_dir, fig_name)
 ggplot2::ggsave(
   twitter_card,
-  filename = paste0(getwd(), fig_dir, '/chart.png'),
+  filename = fn,
   width = (w / s),
   height = (h / s),
   bg = "white",

@@ -134,7 +134,7 @@ twitter_card <- ggplot(monthly, aes(x = Date, y = co2)) +
 # export
 ggplot2::ggsave(
   twitter_card,
-  filename = paste0(getwd(), fig_dir, '/chart2.png'),
+  filename = paste0(getwd(), fig_dir, '/chart.png'),
   width = (w / s),
   height = (h / s),
   bg = "white",

@@ -25,6 +25,7 @@ gristify <- function() {
     plot.caption = ggplot2::element_text(
       family = font_text,
       size = 9,
+      face = "italic",
       hjust = 0,
       color = "#666666"
     ),

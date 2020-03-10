@@ -1,28 +1,31 @@
 pacman::p_load('showtext') # If you're on a newish Mac, you'll need XQuartz installed.
 font_add_google("Open Sans", "opensans")
-font <- "opensans"
+font_add_google("Roboto Mono", "robotomono")
+font_add_google("Noto Sans", "noto")
+
+font_text <- "opensans"
+font_num <- "opensans"
 showtext_auto()
 
 gristify <- function() {
-  
   ggplot2::theme(
-    
     # Text
     plot.title = ggplot2::element_text(
-      family = font,
+      family = font_text,
       size = 20,
       face = "bold",
       color = "#222222"
     ),
     plot.title.position = "plot",
     plot.subtitle = ggplot2::element_text(
-      family = font,
+      family = font_text,
       size = 18,
       margin = ggplot2::margin(3, 0, 20, 0)
     ),
     plot.caption = ggplot2::element_text(
-      family = font,
+      family = font_text,
       size = 9,
+      #face = "italic",
       hjust = 0,
       color = "#666666"
     ),
@@ -35,7 +38,7 @@ gristify <- function() {
     legend.title = ggplot2::element_blank(),
     legend.key = ggplot2::element_blank(),
     legend.text = ggplot2::element_text(
-      family = font,
+      family = font_num,
       size = 14,
       color = "#666666"
     ),
@@ -43,8 +46,8 @@ gristify <- function() {
     # Axes
     axis.title = ggplot2::element_blank(),
     axis.text = ggplot2::element_text(
-      family = font,
-      size = 14,
+      family = font_num,
+      size = 12,
       color = "#666666"
     ),
     axis.text.x = ggplot2::element_text(margin = ggplot2::margin(5, b = 10)),

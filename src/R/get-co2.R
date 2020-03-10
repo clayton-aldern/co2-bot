@@ -56,19 +56,19 @@ card <- monthly %>% ggplot(aes(x = Date, y = cycle)) +
     size = 2.5,
     shape = 1,
     stroke = 1,
-    color = "#C3C3C3"
+    color = styles$pts
   ) +
   geom_line(aes(y = trend),
             size = 1.1,
-            color = "#FF7700",
+            color = styles$ln,
             lineend = "round") +
   geom_point(
     data = daily,
     aes(x = Date, y = cycle),
-    size = 2.5,
-    shape = 1,
+    size = styles$shapesize,
+    shape = styles$shape,
     stroke = 1,
-    color = "#0f9bff"
+    color = styles$highlight
   ) +
   labs(title = t,
        subtitle = t_s,
@@ -77,8 +77,8 @@ card <- monthly %>% ggplot(aes(x = Date, y = cycle)) +
   geom_label(
     aes(
       x = daily[1, ]$Date - (365 * 1.8),
-      y = daily[1, ]$cycle - 17.5,
-      label = paste0("Yesterday:\n", daily[1, ]$cycle, " ppm"),
+      y = daily[1, ]$cycle - 18,
+      label = paste0("Yesterday:\n", sprintf("%.2f", round(daily$cycle[1],2)), " ppm"),
       fontface = 3
     ),
     hjust = 0,
@@ -87,7 +87,7 @@ card <- monthly %>% ggplot(aes(x = Date, y = cycle)) +
     colour = "#666666",
     #fill = "white",
     label.size = NA,
-    family = font_text,
+    family = styles$font_text,
     size = 4
   ) +
   geom_curve(
@@ -97,7 +97,7 @@ card <- monthly %>% ggplot(aes(x = Date, y = cycle)) +
       xend = daily[1, ]$Date,
       yend = daily[1, ]$cycle - 1
     ),
-    colour = "#0f9bff",
+    colour = styles$highlight,
     size = 0.75,
     curvature = 0.2,
     lineend = "round",
@@ -108,7 +108,7 @@ card <- monthly %>% ggplot(aes(x = Date, y = cycle)) +
     aes(
       x = daily[2, ]$Date - (365 * 3.9),
       y = daily[2, ]$cycle,
-      label = paste0("One year ago:\n", daily[2, ]$cycle, " ppm"),
+      label = paste0("One year ago:\n", sprintf("%.2f", round(daily$cycle[2],2)), " ppm"),
       fontface = 3
     ),
     hjust = 0,
@@ -117,7 +117,7 @@ card <- monthly %>% ggplot(aes(x = Date, y = cycle)) +
     colour = "#666666",
     #fill = "white",
     label.size = NA,
-    family = font_text,
+    family = styles$font_text,
     size = 4
   ) +
   geom_curve(
@@ -127,7 +127,7 @@ card <- monthly %>% ggplot(aes(x = Date, y = cycle)) +
       xend = daily[2, ]$Date - 60,
       yend = daily[2, ]$cycle + 0.4
     ),
-    colour = "#0f9bff",
+    colour = styles$highlight,
     size = 0.75,
     curvature = -0.2,
     lineend = "round",

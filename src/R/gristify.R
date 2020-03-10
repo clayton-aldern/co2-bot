@@ -1,31 +1,67 @@
-pacman::p_load('showtext') # If you're on a newish Mac, you'll need XQuartz installed.
-font_add_google("Open Sans", "opensans")
-font_add_google("Roboto Mono", "robotomono")
-font_add_google("Noto Sans", "noto")
+pacman::p_load('showtext') # if you're on a newish Mac, you'll need XQuartz installed.
+# font_add_google("Open Sans", "opensans")
+# font_add_google("Overpass", "overpass")
+# font_add_google("Roboto Mono", "robotomono")
+# font_add_google("Nunito Sans", "nunito")
+# font_add_google("Ubuntu", "ubuntu")
+# font_add_google("Karla", "karla")
 
-font_text <- "opensans"
-font_num <- "opensans"
+get_styles <- function(s) {
+  if (s=="grist") {
+    pts <- "#C3C3C3"
+    ln <- "#ff7700"
+    highlight <- "#0f9bff"
+    font_add_google("Open Sans", "opensans")
+    font_text <- "opensans"
+    font_num <- "opensans"
+    face <- "plain"
+    shape <- 1
+    shapesize <- 2.5
+  } else {
+    pts <- "#cccccc"
+    ln <- "#ff9999"
+    highlight <- "#ffcc99"
+    font_add_google("Overpass", "overpass")
+    font_add_google("Roboto Mono", "robotomono")
+    font_text <- "overpass"
+    font_num <- "robotomono"
+    face <- "italic"
+    shape <- 16
+    shapesize <- 3
+  }
+  styles <- list(pts=pts,
+                 ln=ln,
+                 highlight=highlight,
+                 font_text=font_text,
+                 font_num=font_num,
+                 face=face,
+                 shape=shape,
+                 shapesize=shapesize)
+  return(styles)
+}
+
+styles <- get_styles(style)
 showtext_auto()
 
 gristify <- function() {
   ggplot2::theme(
     # Text
     plot.title = ggplot2::element_text(
-      family = font_text,
+      family = styles$font_text,
       size = 20,
       face = "bold",
       color = "#222222"
     ),
     plot.title.position = "plot",
     plot.subtitle = ggplot2::element_text(
-      family = font_text,
+      family = styles$font_text,
       size = 18,
       margin = ggplot2::margin(3, 0, 20, 0)
     ),
     plot.caption = ggplot2::element_text(
-      family = font_text,
+      family = styles$font_text,
       size = 9,
-      #face = "italic",
+      face = styles$face,
       hjust = 0,
       color = "#666666"
     ),
@@ -38,7 +74,7 @@ gristify <- function() {
     legend.title = ggplot2::element_blank(),
     legend.key = ggplot2::element_blank(),
     legend.text = ggplot2::element_text(
-      family = font_num,
+      family = styles$font_num,
       size = 14,
       color = "#666666"
     ),
@@ -46,7 +82,7 @@ gristify <- function() {
     # Axes
     axis.title = ggplot2::element_blank(),
     axis.text = ggplot2::element_text(
-      family = font_num,
+      family = styles$font_num,
       size = 12,
       color = "#666666"
     ),

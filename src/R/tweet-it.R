@@ -2,27 +2,28 @@
 # co2-bot 0.1
 # author: Clayton Aldern
 
-pacman::p_load('rtweet','textclean')
+pacman::p_load('rtweet', 'textclean')
 source(paste0(getwd(), "/src/R/get-co2.R"))
 attempted = FALSE
 
 # Check to see if we have the most recent data.
 # We want the bot to run every morning, so we should have data through yesterday.
-if (as.character(daily$Date[nrow(daily)]) != Sys.Date() - 1) {
-  
+# If everything looks good, tweet it out!
+if (as.character(daily$Date[1]) != Sys.Date() - 1) {
   stop(
     "You don't have the most recent data data.
     Check the NOAA .txt at ftp://aftp.cmdl.noaa.gov/products/trends/co2/co2_trend_gl.txt"
   )
-  
+} else {
   tweet <-
     paste0(
-      "Good morning! ☕️
+      "[Testing a bot; bear with me...]
+Good morning! ☕️
 Yesterday's global average atmospheric CO2 reading was ",
-      daily$day[1],
+      sprintf("%.2f", round(daily$cycle[1],2)),
       " ppm. 🌏
 Last year at this time, it was ",
-      daily$day[2],
+      sprintf("%.2f", round(daily$cycle[2],2)),
       " ppm. 📈"
     )
   img <- fn

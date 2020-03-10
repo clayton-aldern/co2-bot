@@ -44,7 +44,6 @@ styles <- get_styles(style)
 showtext_auto()
 
 gristify <- function() {
-  
   ggplot2::theme(
     # Text
     plot.title = ggplot2::element_text(

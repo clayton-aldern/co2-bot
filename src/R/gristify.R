@@ -17,6 +17,7 @@ get_styles <- function(s) {
     face <- "plain"
     shape <- 1
     shapesize <- 2.5
+    alpha <- 1
   } else {
     pts <- "#cccccc"
     ln <- "#ff9999"
@@ -28,6 +29,7 @@ get_styles <- function(s) {
     face <- "italic"
     shape <- 16
     shapesize <- 3
+    alpha <- .66
   }
   styles <- list(pts=pts,
                  ln=ln,
@@ -36,7 +38,8 @@ get_styles <- function(s) {
                  font_num=font_num,
                  face=face,
                  shape=shape,
-                 shapesize=shapesize)
+                 shapesize=shapesize,
+                 alpha=alpha)
   return(styles)
 }
 

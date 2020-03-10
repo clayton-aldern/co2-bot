@@ -56,7 +56,8 @@ card <- monthly %>% ggplot(aes(x = Date, y = cycle)) +
     size = 2.5,
     shape = 1,
     stroke = 1,
-    color = styles$pts
+    color = styles$pts,
+    alpha = styles$alpha
   ) +
   geom_line(aes(y = trend),
             size = 1.1,

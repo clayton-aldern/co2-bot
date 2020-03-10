@@ -17,8 +17,7 @@ if (as.character(daily$Date[1]) != Sys.Date() - 1) {
 } else {
   tweet <-
     paste0(
-      "[Testing a bot; bear with me...]
-Good morning! ☕️
+      "Good morning! ☕️
 Yesterday's global average atmospheric CO2 reading was ",
       sprintf("%.2f", round(daily$cycle[1],2)),
       " ppm. 🌏

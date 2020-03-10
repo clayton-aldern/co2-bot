@@ -1,5 +1,5 @@
 # Carbot Dioxide
-Hello! **Carbot Dioxide** is an R bot that pulls the most recent global atmospheric CO2 concentration average from [NOAA](https://www.esrl.noaa.gov/gmd/ccgg/trends/gl_trend.html), generates a `ggplot2` chart with the most recent data, and tweets it out.
+Hello! **Carbot Dioxide** is an R bot that pulls the most recent global atmospheric CO2 concentration average from [NOAA](https://www.esrl.noaa.gov/gmd/ccgg/trends/gl_trend.html), generates a `ggplot2` chart with the most recent data, and tweets it out. The main file is `tweet-it.R`.
 
 To store credentials for the `rtweet` package, follow the instructions [here](https://rtweet.info/articles/auth.html). You'll also need the development version of `ggplot2`:
 

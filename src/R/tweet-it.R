@@ -11,13 +11,14 @@ attempted = FALSE
 if (as.character(daily$Date[nrow(daily)]) != Sys.Date() - 1) {
   
   stop(
-    "You don't have today's data.
-    Check the NOAA csv at https://www.esrl.noaa.gov/gmd/webdata/ccgg/trends/co2_mlo_weekly.csv"
+    "You don't have the most recent data data.
+    Check the NOAA .txt at ftp://aftp.cmdl.noaa.gov/products/trends/co2/co2_trend_gl.txt"
   )
   
   tweet <-
     paste0(
-      "Today's atmospheric carbon dioxide reading is ",
+      "Good morning! ☕️
+Yesterday's global average atmospheric CO2 reading was ",
       daily$day[1],
       " ppm. 🌏
 Last year at this time, it was ",

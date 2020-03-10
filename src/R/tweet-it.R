@@ -1,5 +1,5 @@
 #!/usr/bin/env Rscript
-# co2-bot 0.1
+# co2-bot 0.2
 # author: Clayton Aldern
 
 pacman::p_load('rtweet', 'textclean')
